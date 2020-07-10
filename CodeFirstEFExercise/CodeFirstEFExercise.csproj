@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200709012504_AddedOrderLine.cs" />
+    <Compile Remove="Migrations\20200709012504_AddedOrderLine.Designer.cs" />
+    <Compile Remove="Migrations\20200709180720_FixedOrderLine.cs" />
+    <Compile Remove="Migrations\20200709180720_FixedOrderLine.Designer.cs" />
+    <Compile Remove="Migrations\20200709182232_fixedOrderLineAgain.cs" />
+    <Compile Remove="Migrations\20200709182232_fixedOrderLineAgain.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="microsoft.entityframeworkcore.proxies" Version="3.1.5" />
+    <PackageReference Include="microsoft.entityframeworkcore.sqlserver" Version="3.1.5" />
+    <PackageReference Include="microsoft.entityframeworkcore.tools" Version="3.1.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>
