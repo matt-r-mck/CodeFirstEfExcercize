@@ -11,23 +11,33 @@ namespace CodeFirstEFExercise.Controllers {
 
         private readonly AppDbContext _context = null;
 
+        //private async Task CalculateOrderTotal(int orderId) {
+        //    var order = await _context.Orders.FindAsync(orderId);
+        //    if (order == null) throw new Exception("Order not found for calc.");
+        //    var orderLines = await _context.OrderLines.Where(ol => ol.OrderId == orderId).ToListAsync();
+        //    var total = 0m;
+        //    foreach(var line in orderLines) {
+        //        total += line.Quantity * line.Product.Price;
+        //    }
+        //    order.Total = total;
+        //    await _context.SaveChangesAsync();
+        //}
+
         private async Task CalculateOrderTotal(int orderId) {
             var order = await _context.Orders.FindAsync(orderId);
             if (order == null) throw new Exception("Order not found for calc.");
-            var orderLines = await _context.OrderLines.Where(ol => ol.OrderId == orderId).ToListAsync();
-            var total = 0m;
-            foreach(var line in orderLines) {
-                total += line.Quantity * line.Product.Price;
-            }
-            order.Total = total;
+            order.Total = (from l in order.OrderLines 
+                           select new {
+                               Subtotal = l.Quantity * l.Product.Price
+                           }).Sum(x => x.Subtotal);
             await _context.SaveChangesAsync();
         }
 
-        //public async Task<IEnumerable<OrderLine>> GetAll() {
-        //    return await _context.OrderLines.ToListAsync();
-        //}
+            //public async Task<IEnumerable<OrderLine>> GetAll() {
+            //    return await _context.OrderLines.ToListAsync();
+            //}
 
-        public async Task<OrderLine> Get(int id) {
+            public async Task<OrderLine> Get(int id) {
             return await _context.OrderLines.FindAsync(id);
         }
 

@@ -10,9 +10,11 @@ namespace CodeFirstEFExercise.Models {
         public Order() {}
 
         public int Id { get; set; }
+
         [StringLength(50)]
         [Required]
         public string Description { get; set; }
+        
         [Column(TypeName = "decimal(9,2)")]
         public decimal Total { get; set; }
 
@@ -21,6 +23,8 @@ namespace CodeFirstEFExercise.Models {
         /// </summary>
         public int CustomerId { get; set; }
         public virtual Customer Customer { get; set; }
+
+        public virtual IEnumerable<OrderLine> OrderLines { get; set; }
 
     }
 }
