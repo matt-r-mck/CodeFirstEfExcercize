@@ -4,6 +4,11 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace CodeFirstEFExercise.Models {
+
+    /// <summary>
+    /// Contains all of the tables to be accessed within this context.
+    /// Also sets connection string for SQL Server Database
+    /// </summary>
     public class AppDbContext : DbContext{
 
         /// <summary>
@@ -16,12 +21,16 @@ namespace CodeFirstEFExercise.Models {
 
         public AppDbContext() {}
 
-
+        /// <summary>
+        /// Sets instance of DbContext to out connectin string.
+        /// </summary>
+        /// <param name="options"> Options passed from options builder. </param>
         public AppDbContext(DbContextOptions<AppDbContext> options) 
             : base(options){ }
 
         /// <summary>
-        /// Contains method to configure connection and tools for DbContext and to create database
+        /// Contains method to configure connection and tools for DbContext and to create database.
+        /// Passed to connection constructor.
         /// </summary>
         /// <param name="optionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
@@ -33,11 +42,13 @@ namespace CodeFirstEFExercise.Models {
         }
 
         /// <summary>
-        /// Fluent-Api goes here
+        /// Fluent-Api goes here. 
+        /// Overrides any other table properties.
         /// </summary>
         /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
 
+            //Sets max legnth, makes non nullable, and requires Product.Code to be unique.
             modelBuilder.Entity<Product>(e => {
                 e.Property("Code").HasMaxLength(8).IsRequired();
                 e.HasIndex("Code").IsUnique();

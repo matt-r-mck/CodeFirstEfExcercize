@@ -5,6 +5,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace CodeFirstEFExercise.Models {
+
+    /// <summary>
+    /// Models a customer and creates customer table.
+    /// </summary>
     public class Customer {
 
         public Customer() {}
@@ -20,7 +24,10 @@ namespace CodeFirstEFExercise.Models {
         [Column(TypeName = "decimal(12,2)")]
         public decimal TotalSales { get; set; } = 0;
 
-        []
+        /// <summary>
+        /// Creates an instance of all orders attached to this customer.
+        /// Usually requuires a [jsonignore] tag
+        /// </summary>
         public virtual IEnumerable<Order> Orders { get; set; }
 
     }

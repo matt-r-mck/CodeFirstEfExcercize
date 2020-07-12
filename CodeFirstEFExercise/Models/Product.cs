@@ -7,9 +7,14 @@ using System.Text;
 namespace CodeFirstEFExercise.Models {
     public class Product {
 
+        /// <summary>
+        /// Models and creates table for products available from our inventory.
+        /// </summary>
         public Product() {}
 
         public int Id { get; set; }
+
+        //attributes
         [StringLength(8)]
         public string Code { get; set; }
         [StringLength(50)]

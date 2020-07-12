@@ -6,19 +6,23 @@ using System.Text;
 using System.Text.Json.Serialization;
 
 namespace CodeFirstEFExercise.Models {
+
+    /// <summary>
+    /// Models individual item lines for each item in an order.
+    /// </summary>
     public class OrderLine {
 
         public OrderLine() {}
 
         public int Id { get; set; }
-        [StringLength(30)]
-        [Required]
+
         public int Quantity { get; set; }
 
         public int ProductId { get; set; }
         public virtual Product Product { get; set; }
 
         public int OrderId { get; set; }
+
         [JsonIgnore]
         public virtual Order Order { get; set; }
 

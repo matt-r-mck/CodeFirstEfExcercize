@@ -6,7 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CodeFirstEFExercise.Controllers {
+
     public class CustomersController {
+
 
         private readonly AppDbContext _context = null;
 

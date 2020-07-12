@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 namespace CodeFirstEFExercise.Controllers {
     public class ProductsController {
 
+        //Does not inngerit any tables from the DbContext
         private readonly AppDbContext _context = null;
 
         public async Task<IEnumerable<Product>> GetAll() {
